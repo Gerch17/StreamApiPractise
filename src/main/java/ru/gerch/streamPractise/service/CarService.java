@@ -2,8 +2,11 @@ package ru.gerch.streamPractise.service;
 
 import ru.gerch.streamPractise.model.Car;
 import ru.gerch.streamPractise.model.CarInfo;
+import ru.gerch.streamPractise.utils.Condition;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Необходимо реализовать каждый метод
@@ -23,7 +26,7 @@ public class CarService {
      * Необходимо вернуть список строк из Condition
      */
     public List<String> getConditions(List<Car> cars) {
-        return null;
+        return  cars.stream().map(car -> car.getCondition().getText()).collect(Collectors.toList());
     }
 
     /**
@@ -31,7 +34,7 @@ public class CarService {
      * Необходимо вернуть только те, у которых Condition - "NEW"
      */
     public List<Car> getNewCars(List<Car> cars) {
-        return null;
+        return cars.stream().filter(car -> car.getCondition().equals(Condition.NEW)).collect(Collectors.toList());
     }
 
     /**
@@ -39,7 +42,7 @@ public class CarService {
      * Необходимо вернуть количество Car, у которых больше 2 Owners
      */
     public long countCarsOwners(List<Car> cars) {
-        return 0;
+        return cars.stream().filter(car -> car.getOwners().size() > 2).count();
     }
 
     /**
@@ -47,7 +50,7 @@ public class CarService {
      * Необходимо каждому элементу списка в поле age прибавить 1
      */
     public List<Car> incrementCarAge(List<Car> cars) {
-        return null;
+        return cars.stream().peek(car -> car.setAge(car.getAge() + 1)).collect(Collectors.toList());
     }
 
     /**
@@ -55,7 +58,7 @@ public class CarService {
      * Необходимо вернуть Car, у которого самое большое значение age
      */
     public Car getOldestCar(List<Car> cars) {
-        return null;
+        return cars.stream().max(Comparator.comparingInt(Car::getAge)).get();
     }
 
     /**
@@ -64,7 +67,7 @@ public class CarService {
      * Имена не должны повторяться
      */
     public List<String> getOwnersCarsNames(List<Car> cars) {
-        return null;
+        return cars.stream().flatMap(car -> car.getOwners().stream()).map(owner -> owner.getName()).distinct().collect(Collectors.toList());
     }
 
     /**
@@ -72,7 +75,7 @@ public class CarService {
      * Необходимо преобразовать его в список CarInfo
      */
     public List<CarInfo> mapToCarInfo(List<Car> cars) {
-        return null;
+        return cars.stream().map(car -> new CarInfo(car.getName(), car.getAge(), car.getOwners().size())).collect(Collectors.toList());
     }
 
     /**
@@ -80,7 +83,7 @@ public class CarService {
      * Необходимо вернуть не более двух машин, у которых Condition - BROKEN
      */
     public List<Car> getTwoBrokenCar(List<Car> cars) {
-        return null;
+        return cars.stream().filter(car -> car.getCondition().equals(Condition.BROKEN)).limit(2).collect(Collectors.toList());
     }
 
     /**
@@ -88,6 +91,6 @@ public class CarService {
      * Необходимо вернуть отсортированный по полю age список Car
      */
     public List<Car> getSortedCarsByAge(List<Car> cars) {
-        return null;
+        return cars.stream().sorted(Comparator.comparing(Car::getAge).reversed()).collect(Collectors.toList());
     }
 }
