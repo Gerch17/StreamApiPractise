@@ -2,6 +2,8 @@ package ru.gerch.streamPractise.service;
 
 import ru.gerch.streamPractise.model.Car;
 import ru.gerch.streamPractise.model.CarInfo;
+import ru.gerch.streamPractise.model.Owner;
+import ru.gerch.streamPractise.utils.Condition;
 
 import java.util.List;
 
@@ -88,6 +90,38 @@ public class CarService {
      * Необходимо вернуть отсортированный по полю age список Car
      */
     public List<Car> getSortedCarsByAge(List<Car> cars) {
+        return null;
+    }
+
+    /**
+     * Приходит список Car
+     * Необходимо посчитать средний возраст всех машин
+     */
+    public double getAvgCarsAge(List<Car> cars) {
+        return 0;
+    }
+
+    /**
+     * Приходит список Car
+     * Проверить, что все машины с Condition - "Broken" старше 10 лет
+     */
+    public Boolean checkBrokenCarsAge(List<Car> cars) {
+        return null;
+    }
+
+    /**
+     * Приходит список Car
+     * Проверить, что хотя бы одной у машины с Condition - "USED" был владелец по имени Adam
+     */
+    public Boolean checkCarOwnerName(List<Car> cars) {
+        return null;
+    }
+
+    /**
+     * Приходит список Car
+     * Необходимо вернуть любого Owner старше 36 лет
+     */
+    public Owner getAnyOwner(List<Car> cars) {
         return null;
     }
 }

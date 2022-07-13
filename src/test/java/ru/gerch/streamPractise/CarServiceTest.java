@@ -1,5 +1,6 @@
 package ru.gerch.streamPractise;
 
+import com.beust.ah.A;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ import ru.gerch.streamPractise.model.Owner;
 import ru.gerch.streamPractise.service.CarService;
 import ru.gerch.streamPractise.utils.Condition;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -88,6 +90,30 @@ public class CarServiceTest {
         List<Car> sortedCars = carService.getSortedCarsByAge(getCarList());
 
         Assert.assertEquals(sortedCars, getSorted());
+    }
+
+    @Test
+    public void avgCarsAge() {
+        double actualAvg = carService.getAvgCarsAge(getCarList());
+
+        Assert.assertEquals(actualAvg, expectedAvg);
+    }
+
+    @Test
+    public void checkBrokenCarTest() {
+        Assert.assertTrue(carService.checkBrokenCarsAge(getCarList()));
+    }
+
+    @Test
+    public void checkUsedCarOwnerName() {
+        Assert.assertTrue(carService.checkCarOwnerName(getCarList()));
+    }
+
+    @Test
+    public void anyOwner() {
+        Owner actualOwner = carService.getAnyOwner(getCarList());
+
+        Assert.assertTrue(getExpectedOwners().stream().anyMatch(owner -> owner.equals(actualOwner)));
     }
 
     private List<Car> getCarList() {
@@ -175,4 +201,13 @@ public class CarServiceTest {
         sorted.sort(Comparator.comparing(Car::getAge).reversed());
         return sorted;
     }
+
+    private List<Owner> getExpectedOwners() {
+        List<Owner> owners = new ArrayList<>();
+        owners.add(new Owner("Anna", 44, 19));
+        owners.add(new Owner("Anton", 50, 25));
+        return owners;
+    }
+
+    private double expectedAvg = 8.428571428571429;
 }
