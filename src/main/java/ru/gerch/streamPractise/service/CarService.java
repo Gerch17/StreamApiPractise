@@ -3,7 +3,6 @@ package ru.gerch.streamPractise.service;
 import ru.gerch.streamPractise.model.Car;
 import ru.gerch.streamPractise.model.CarInfo;
 import ru.gerch.streamPractise.model.Owner;
-import ru.gerch.streamPractise.utils.Condition;
 
 import java.util.List;
 
