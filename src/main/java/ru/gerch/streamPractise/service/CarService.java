@@ -3,7 +3,6 @@ package ru.gerch.streamPractise.service;
 import ru.gerch.streamPractise.model.Car;
 import ru.gerch.streamPractise.model.CarInfo;
 import ru.gerch.streamPractise.model.Owner;
-import ru.gerch.streamPractise.utils.Condition;
 
 import java.util.List;
 
@@ -111,7 +110,7 @@ public class CarService {
 
     /**
      * Приходит список Car
-     * Проверить, что хотя бы одной у машины с Condition - "USED" был владелец по имени Adam
+     * Проверить, что хотя бы у одной машины с Condition - "USED" был владелец по имени Adam
      */
     public Boolean checkCarOwnerName(List<Car> cars) {
         return null;
